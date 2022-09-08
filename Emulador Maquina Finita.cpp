@@ -1,3 +1,11 @@
+/* Esse emulador √© capaz de realizar:
+- Convers√£o de bases numericas ( binario - decimal / decimal - binario)
+- Realiza normaliza√ß√µes baseado na mantissa,menor expoente e maior expoente
+- Realiza a transforma√ß√£o pra negativo empregando as tr√™s representacoes especificas (c1,c2,sinal e amplitude)
+- A explicita√ß√£o se houve erros de under flow, over flow ou truncamento*/
+
+//Obs: os valores podem ser inseridos com  virgula :)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
@@ -25,7 +33,7 @@ void normalizarNega(double numero,char normalizado[maxtam], char bin[maxtam],int
 				i++;		
 		}
 		
-		posic = i; // salvo a posicao do vetor onde comeÁa os digitos
+		posic = i; // salvo a posicao do vetor onde come√ßa os digitos
 		int max=posic+mantissa; // somo o valro da minha mantissa, onde vai ser o intervalo de numeros q eu vou jogar no vetor
 		for(i=posic;i<max;i++){
 			normalizado[l] = bin[i];
@@ -139,7 +147,7 @@ void decimalparabinario(double numero, char bin[maxtam], int *tamnumero){
     // Virgula
     bin[casas] = '.';
     
-    printf("O n˙mero %lf em bin·rio È: ",numero);
+    printf("O n√∫mero %lf em bin√°rio √©: ",numero);
     int inicio = comeco(bin);
 	int final = fim(bin);
     for(i=inicio;i<=final;i++)
@@ -197,7 +205,7 @@ void fazCompUm(char normalizado[maxtam],char comp1[maxtam], int *tamnumero, int 
 	comp1[0] = '1'; // conversao pro bit de sinal negativo
 	comp1[1] = ' ';
 	comp1[2] = '.';
-	limit += *tamnumero; // tam numero È o numero de casas que o numero precisa
+	limit += *tamnumero; // tam numero √© o numero de casas que o numero precisa
 	for(i=3;i<=limit;i++){
 		if(normalizado[i]=='1'){
 			comp1[i] = '0';
@@ -259,7 +267,7 @@ void verifica(int *contador,int menorE,int maiorE, int mantissa,int *tamnumero){
 		cont++;
 	}
 	if(cont==0)
-		printf("N√O HOUVE ERRO :) \n\n");
+		printf("N√ÉO HOUVE ERRO :) \n\n");
 }
 int main(){
 	setlocale(LC_ALL, "Portuguese");
@@ -268,11 +276,11 @@ int main(){
     int mantissa, menorE, maiorE,tamnumero,expo=0,contador;
     char bin[maxtam], normalizado[maxtam], comp1[maxtam], comp2[maxtam],decimal[maxtam], NUMERO[maxtam], *stopstring;
     int ops=1, op,a=0,vv=0,aa=0,bb=0,test1=0,test2=0,test3=0;
-    printf("******Bem vindo ao emulador de m·quina finita******\n");
+    printf("******Bem vindo ao emulador de m√°quina finita******\n");
     do
     {
 		if(ops==1){
-			printf("Configurando a m·quina...\n");
+			printf("Configurando a m√°quina...\n");
 			printf("Digite a precisao da mantissa. (M)\n");
 			scanf("%s",&aux1);
 			printf("Digite o menor valor de expoente. (L) \n");
@@ -296,8 +304,8 @@ int main(){
 		if( test2 > test3 || test1<=0 || vv !=0 || aa !=0 || bb !=0 ){
 			do{
 			vv=0; aa = 0; bb = 0;
-			printf("\nValores inv·lidos, digite novamente.\n\n");
-			printf("Digite a precis„o da mantissa. (M) \n");
+			printf("\nValores inv√°lidos, digite novamente.\n\n");
+			printf("Digite a precis√£o da mantissa. (M) \n");
 			scanf("%s",&aux1);
 			printf("Digite o menor valor de expoente. (L) \n");
 			scanf("%s",&aux2);
@@ -319,14 +327,14 @@ int main(){
 	
 }
 		mantissa = atoi(aux1); menorE = atoi(aux2); maiorE = atoi(aux3);
-		printf("Digite um n˙mero decimal a ser convertido.\n");
+		printf("Digite um n√∫mero decimal a ser convertido.\n");
     	scanf("%s", &NUMERO);
     	int tamanho = strlen(NUMERO);
     	for(int e=0;e<tamanho;e++){
     		if(isalpha(NUMERO[e])!=0 ){
     			do{
-    				printf("Valor inv·lido, digite novamente.\n");
-					printf("Digite um n˙mero decimal a ser convertido.\n");
+    				printf("Valor inv√°lido, digite novamente.\n");
+					printf("Digite um n√∫mero decimal a ser convertido.\n");
 					scanf("%s", &NUMERO);
 				}while(isalpha(NUMERO[e])!=0 );
 			}
@@ -337,16 +345,16 @@ int main(){
 		memset(comp1,0,maxtam);
 		memset(comp2,0,maxtam);
 		memset(decimal,0,maxtam); contador = 0;
-        printf("\nConfiguraÁ„o atual da m·quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
-        printf("\nO que o usu·rio deseja?.\n\n");
-        printf("1. Bin·rio para Decimal\n");
-        printf("2. Decimal para Bin·rio\n");
-        printf("3. Realizar as conversıes\n");
+        printf("\nConfigura√ß√£o atual da m√°quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
+        printf("\nO que o usu√°rio deseja?.\n\n");
+        printf("1. Bin√°rio para Decimal\n");
+        printf("2. Decimal para Bin√°rio\n");
+        printf("3. Realizar as convers√µes\n");
         printf("4. Sair\n");
-        printf("\nDigite uma opÁ„o: \n");
+        printf("\nDigite uma op√ß√£o: \n");
         scanf("%d",&op); 
         while(op!=1 && op!=2 && op!=3 && op!=4){
-		printf("OpÁ„o inv·lida\nDigite novamente uma opÁ„o. \n");
+		printf("Op√ß√£o inv√°lida\nDigite novamente uma op√ß√£o. \n");
    		scanf("%d",&op); 
 		}
         system("cls"); //Comando utilizado para limpar tela
@@ -354,51 +362,51 @@ int main(){
         {
         case 1:
         	char numero2[maxtam]; int tam3;
-        	printf("Digite um n˙mero em bin·rio a ser convertido. \n");
+        	printf("Digite um n√∫mero em bin√°rio a ser convertido. \n");
         	scanf("%s",&numero2); tam3= strlen(numero2); numero2[tam3] = '\0';
-        	printf("O n˙mero %s em decimal È: ",numero2);
+        	printf("O n√∫mero %s em decimal √©: ",numero2);
             binarioparadecimal(numero2,numero);
             printf("\n");
             break;
         case 2:
-        	printf("ConfiguraÁ„o atual da m·quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
+        	printf("Configura√ß√£o atual da m√°quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
             decimalparabinario(numero, bin,&tamnumero);
             break;
         case 3://Sair do programa
-         	printf("ConfiguraÁ„o atual da m·quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
-         	printf("\n*****CONVERS’ES*****\n\n");
+         	printf("Configura√ß√£o atual da m√°quina: (Num: %lf | M :%d | L: %d | U: %d)\n", numero,mantissa,menorE,maiorE);
+         	printf("\n*****CONVERS√ïES*****\n\n");
           	decimalparabinario(numero, bin,&tamnumero);
             if(numero>=(-0.99999999999999999999999) && numero <= 0.99999999999999999999999 ){ 
-            	printf("O n˙mero normalizado em bin·rio È: ");
+            	printf("O n√∫mero normalizado em bin√°rio √©: ");
             	normalizarNega(numero,normalizado,bin,mantissa,&contador,&tamnumero);
             		expozero(numero,bin,decimal,mantissa,&tamnumero);
-            		printf("\nO n˙mero bin·rio: %s transformado em decimal È:", decimal);
+            		printf("\nO n√∫mero bin√°rio: %s transformado em decimal √©:", decimal);
             		binarioparadecimal(decimal,numero);
 			}
             else{
-				printf("O n˙mero normalizado em bin·rio È: ");
+				printf("O n√∫mero normalizado em bin√°rio √©: ");
             	normalizar(numero,normalizado,bin,mantissa,&contador,&tamnumero);
             	expozero(numero,bin,decimal,mantissa,&tamnumero);
-            	printf("\nO n˙mero bin·rio: %s transformado em decimal È:", decimal);
+            	printf("\nO n√∫mero bin√°rio: %s transformado em decimal √©:", decimal);
             	binarioparadecimal(decimal,numero);
 			}
 			verifica(&contador,menorE,maiorE,mantissa,&tamnumero); // verifica under,over...
 
 			if(numero<0){
-				printf("*****Empregando as tres representaÁıes*****\n\n");
+				printf("*****Empregando as tres representa√ß√µes*****\n\n");
 				if(numero>=(-0.99999999999999999999999) && numero <= 0.99999999999999999999999 ){
-				printf("N˙mero em sinal e amplitude: ");
+				printf("N√∫mero em sinal e amplitude: ");
             	normalizarNega(numero,normalizado,bin,mantissa,&contador,&tamnumero);
             	printf("\n");
             }else{
     
-            	printf("N˙mero em sinal e amplitude: ");
+            	printf("N√∫mero em sinal e amplitude: ");
             	normalizar(numero,normalizado,bin,mantissa,&contador,&tamnumero); printf("\n");
 			}
-			printf("N˙mero em complemento de 1:");
+			printf("N√∫mero em complemento de 1:");
 			fazCompUm(normalizado,comp1,&tamnumero,&contador,numero);
 			printf("\n");
-			printf("\nN˙mero em complemento de 2:");
+			printf("\nN√∫mero em complemento de 2:");
 			fazCompDois(comp1,comp2,&contador,numero);
 			printf("\n\n");
             break;
@@ -408,12 +416,12 @@ int main(){
 			printf("Encerrando programa...");
 			return 0;
         }
-        printf("O que o usu·rio deseja?\n");
-        printf("[1] - Alterar configuraÁıes.\n");
-		printf("[2] - Manter configuraÁıes.\n");
+        printf("O que o usu√°rio deseja?\n");
+        printf("[1] - Alterar configura√ß√µes.\n");
+		printf("[2] - Manter configura√ß√µes.\n");
 		scanf("%i", &ops);
 		while(ops!=1 && ops!=2){
-		printf("OpÁ„o inv·lida.\nDigite novamente uma opÁ„o. \n");
+		printf("Op√ß√£o inv√°lida.\nDigite novamente uma op√ß√£o. \n");
    		scanf("%d",&ops); 
 		}
 		system("cls"); //Comando utilizado para limpar tela
