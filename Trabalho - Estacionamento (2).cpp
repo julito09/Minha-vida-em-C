@@ -3,7 +3,8 @@
 #include<bits/stdc++.h>
 // nome: Julio e thaina
 
-// Estrutura de Dados Fila Din‚mica
+// Estrutura de Dados Fila Din√¢mica
+// estrutura de uma fila de estacionamento
 typedef struct TipoCelula *TipoApontador; 
 
 typedef struct TipoItem { 
@@ -21,7 +22,7 @@ typedef struct TipoFila {
 	TipoApontador Frente, Tras;
 }TipoFila;
 
-// FunÁıes de manipulaÁ„o da Fila Din‚mica
+// Fun√ß√µes de manipula√ß√£o da Fila Din√¢mica
 void FFVazia(TipoFila *Fila ) { 
 	Fila ->Frente = (TipoApontador) malloc(sizeof(TipoCelula )); 
 	Fila ->Tras = Fila ->Frente; 
@@ -124,13 +125,13 @@ main(){
 					break;
 					
 				}
-				item2.deslocamento++; // se nao ele vai desempilhando atÈ q o carro esteja na frente
+				item2.deslocamento++; // se nao ele vai desempilhando at√© q o carro esteja na frente
 				Desenfileira(&fila, &item);
 				Enfileira(item, &aux);
 				p=p->Prox;		
 			}
 			while(!Vazia(aux)){
-				Desenfileira(&aux, &item); // volta os carros de volta pra fila principal apÛs retirar o carro escolhido
+				Desenfileira(&aux, &item); // volta os carros de volta pra fila principal ap√≥s retirar o carro escolhido
 				Enfileira(item, &fila);
 			}
 
@@ -171,7 +172,7 @@ main(){
 /*
 (2) Travesas Bom Jesus dos Passos = estacionamento de 5 carros
 (1) Travessa Monsenhor Joao Pedro = entra
-(3) Rua Jaime GolÁalves = sai
+(3) Rua Jaime Gol√ßalves = sai
 (4) auxiliar
 se chegar cliente para retirar carro que nao esteja na primeira posicao
 da 2, todos os carros entre o carro do cliente e a 3 serao deslocados
@@ -183,7 +184,7 @@ se o estacionamento estiver cheio os carros deverao formar uma fila
 de espera na 
 
 quando um carro sair do estacionamento, se tiver carro com prioridade
-na fila de espera(1), esse carro entrar· no estacionamento 2
+na fila de espera(1), esse carro entrar√° no estacionamento 2
 antes dos demais.
 
 caso nao tenha carro com prioridade, o primeiro carro da 1 entrara no
