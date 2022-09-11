@@ -45,7 +45,7 @@ void normalizarNega(double numero,char normalizado[maxtam], char bin[maxtam],int
 	for(z=tam;z>=0;z--){     // limpando os zeros insignificantes
 		if(normalizado[z]=='0')
 			normalizado[z] = '\0';
-			 if(normalizado[z]=='1')
+			 else
 			 	break;
 			 
 	}
@@ -80,11 +80,11 @@ void normalizar(double numero,char normalizado[maxtam],char bin[maxtam],int mant
 	//if(numero-(int)numero==0)
 	//	max = max -1;
 	 // limite do meu vetor de acordo com a mantissa
-		for(i=cont;i<=max;i++){
+		/*for(i=cont;i<=max;i++){
 			if(bin[i]== '.'){
 				posicaoponto = i; 
 				i++;
-			}
+			}*/
 		normalizado[l] = bin[i];
 		l++;
 		}
@@ -97,7 +97,7 @@ void normalizar(double numero,char normalizado[maxtam],char bin[maxtam],int mant
 	for(z=tam;z>=0;z--){     // limpando os zeros insignificantes
 		if(normalizado[z]=='0')
 			normalizado[z] = '\0';
-			 if(normalizado[z]=='1')
+			else
 			 	break;
 			 
 	}
